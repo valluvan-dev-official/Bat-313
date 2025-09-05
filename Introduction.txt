@@ -1,0 +1,388 @@
+SDLC :
+
+	
+
+SDLC Models :
+
+	1. Waterfall Model - (strict step by step)
+
+	2. Agile Model     - (Fast , Team Work , Iterative)
+
+		
+		Steps :
+
+		   1. Project Split into small parts(sprints)
+		   2. Each sprint has a specific goal
+		   3. Each sprint = Plan -> Code -> Test -> Feedback -> Improve
+
+
+	3. V - Model [Validation & Verfication] : (coding and Testing Together) 
+
+		
+		Requirements : Acceptance Test
+		Design : System Test
+		Coding : Unit Test
+
+
+	4. Spiral Model : (Risk + Repetition + Planning)
+
+
+	5. Iterative Model : (Repeat till Perfect)
+	
+
+What is Data?
+
+    data refers to raw facts and figures that describe the characteristics of an entity.
+
+    These facts alone may not have meaning until they are processed.
+
+
+What is Entity? 
+
+	An Entity is Enything that exists and has a distinct identity
+
+	it can be a living or non-living thing
+
+	example :
+
+		living :
+
+			a person,a student
+
+		Non-living : 
+	
+			a book,a car, laptop
+
+
+What are Attributes?
+
+	an Attribute describes a characteristics of an entity.
+
+
+	A student is an Entity :
+
+		Name
+		Age
+		RollNo
+		Class
+
+	Each Attribute provides specific details about the entity.
+
+
+
+What are RAW Facts?
+
+	Raw facts are unprocessed pieces of information that do not have a clear meaning their own
+
+		
+		200
+		red
+		4.5
+
+	Speed = 200
+	color = red
+
+
+
+Types of Data :
+
+	1. Structrued Data      -> Relational Data --> Relational Database - RDBMS - 
+	2. Unstructured Data    -> Non Relational Data --> Nosql Database
+	3. Semistructured Data
+
+
+Key Features of DBMS :
+
+	1. Data Storage & Retrieval
+	2. Data Privacy & Security
+	3. Data Interity
+	4. Backup & Recovery
+
+
+Types of DBMS :
+
+	1. RDBMS :
+
+		ex: Mysql,Postgresql,Sql Server
+
+	2. Hierarchical DBMS :
+
+		Organize data tnto tree-like Structure
+
+		ex : IBM IMS
+
+	3. Network DBMS :
+
+		Graph structure to represent relationships
+
+		ex: IDMS
+
+	4. Object-Oriented DBMS[OODBMS]
+
+		Stores data as objects
+
+		ex : db40
+		
+
+
+ACID - Data Secure & Reliable :
+
+	A - Atomicity -->  Full ah complete aagum , illa full ah cancel aagum
+
+	C - Consistency --> Rules follow panni data update aaganum
+
+	I - Isolation  --> Multiple users same time'la work pannalum data conflicts vara koodathu
+
+	D - Durability --> System crash ana kooda saved data lost aagakoodathu,backup and recovery mechanisms irukku
+
+
+Normalization
+
+Scalability
+
+Security
+
+
+===========================
+
+Database Objects :
+
+	Tables
+
+	Stored Procedure
+
+	Functions
+
+	Index
+
+	Constraints
+
+	Trigger
+
+	Cursor
+
+	Views
+
+
+===================
+
+Types of SQL Languages & Commands :
+
+
+	DDL
+
+	DML
+
+	DCL
+
+	TCL
+
+	DQL
+
+
+
+
+1. DDL : Data Definition Language 
+
+	Defines the structure of a Database
+
+	- CREATE :
+
+		Create table,database etc
+
+	- RENAME :
+
+		Rename table or columns
+
+	- ALTER :
+
+		Modifies the table Structure
+
+	- DROP  :
+
+		Delete a column ,table/database permanently
+
+	- TRUNCATE :
+
+		Remove all records from table but keeps the structure.
+
+
+2. DML : Data Manipulation Language
+
+	Works with the data inside the table
+
+	- INSERT :
+
+		Add new Records
+
+	- UPDATE :
+
+		Modifies Existing Records
+
+	- DELETE :
+
+		Removes Specific Records
+
+
+3. DCL : Data Control Language
+
+
+	- GRANT :
+
+		Give users access to the database.
+
+	- REVOKE :
+
+		Removes access from users
+
+
+4. TCL : Transaction Control Language :
+
+
+	- COMMIT :
+
+		save changes permanently
+
+	- ROLLBACK :
+
+		cancel uncommited changes
+
+	- SAVEPOINT :
+
+		creates a temporary checkpoint in a transactions
+
+
+5. DQL : Data Query Language 
+
+
+	- SELECT :
+
+		Retrieves data from tables. 
+
+
+
+===================================
+
+Data Types :
+
+	1. Numeric Data
+	2. Text Data
+	3. Date & Time
+	4. Binary Data
+	5. Boolean Data
+	6. Special Data
+
+
+Numeric Data Type :
+
+	INT          --> Whole Numbers [1,2,30,100,etc...]
+	SMALLINT     --> Small Numbers
+	BIGINT       --> Large Numbers
+	DECIMAL(p,s) --> Decimal Numbers(23.456,67.987)
+
+
+Character and (Text\String) Data Type : "werwe", "456"
+
+
+	CHAR(n)      --> Fixed Length Text
+	VARCHAR(n)   --> Variable - Length Text
+	TEXT	     --> Stores a Long Text
+
+
+Date & Time Data Type :
+
+	DATE         --> Stores Only Date(YYYY-MM-DD)
+	TIME         --> Stores Only Time(HH-MM-SS)
+	DATETIME     --> Stores both date and time
+	TIMESTAMP    --> Date and time with timezone support
+
+
+
+Binary Data Type :
+
+	BINARY    --> Fixed length binary
+	VARBINARY --> Variable-length binary
+
+Boolean Data Type :
+
+	Boolean Stores TRUE or FALSE
+
+Special Data Types :
+
+	UUID --> Universally Unique Identifier
+	JSON --> Stores JSON Formatted data
+	XML  --> Stores XML Formatted data
+
+
+
+Constraints :
+
+	- Rules for Accurate Data Storage
+
+
+
+	1. Primary Key :
+
+		Ensure Unique & not-null values in coulmn
+
+	2. Unique :
+
+		No duplicate values allowed
+
+	3. Foregin Key:
+
+		Links a Column to another table
+
+	4. Check :
+
+		Ensure a column follows a certain condition
+
+	5. Not Null :
+
+		Prevent  Empty Values
+
+	6. Default :
+
+		set default value if no value is given
+
+	7. Auto Increment :
+
+		Automatically generate unique numbers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
