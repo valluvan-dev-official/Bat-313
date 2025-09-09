@@ -360,3 +360,111 @@ select avg(salary) from employees where job_desc = "Manager";
 
 select sum(salary) from employees where job_desc = "Sales";
 
+
+/* group by 
+
+GROUP BY statement groups rows that have the same values
+
+GROUP BY statement is often used with aggregate functions
+
+syntax :
+
+	SELECT column_name(s)
+	FROM table_name
+	WHERE condition
+	GROUP BY column_name(s)
+*/
+
+select job_desc , count(emp_name) from employees group by job_desc;
+
+select job_desc,min(salary) from employees group by job_desc;
+
+
+select job_desc , count(emp_id) as Total_employees , count(salary) as No_of_Salaries from employees group by job_desc; 
+
+
+
+/* using between 
+
+values can be numbers, text, or dates
+
+BETWEEN operator selects values within a given range.
+BETWEEN operator is inclusive: begin and end values are included.
+
+*/
+
+select * from Employees where salary between 1000000 and 2500000;
+
+select emp_name,job_desc,salary from employees where emp_id between 5 and 13;
+
+
+select emp_name,job_desc,salary from employees where job_desc between "Manager" and "sales";
+
+
+
+/*like and wildcards
+
+	 - LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+     
+	wildcard character is used to substitute one or more characters in a string.
+
+	There are two wildcards often used in conjunction with the LIKE operator:
+
+	1. The percent sign (%) represents zero, one, or multiple characters
+	2. The underscore sign (_) represents one, single character
+    
+    admin --->   a%n : an,asn,asssn
+    
+    abi  --> a_i : abi
+						
+    
+    
+syntax :
+	SELECT column1, column2, ...
+	FROM table_name
+	WHERE columnN LIKE pattern;
+    
+*/
+
+select * from employees where job_desc like "h_";
+
+select * from employees where job_desc like "%n%";
+
+ /* select distinct
+
+	SELECT DISTINCT statement is used to return only distinct (different) values.
+*/
+
+
+select distinct job_desc from employees;  
+ 
+ 
+ 
+  /* 
+string functions
+
+*/
+
+-- lcase & ucase :
+ 
+ select ucase(emp_name) as Name, lcase(job_desc) as Job_Role from Employees;
+ 
+ 
+ -- char_length : 
+ 
+ select job_desc,char_length(job_desc) as letter_Count from employees group by job_desc ;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
