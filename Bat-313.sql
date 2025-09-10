@@ -455,15 +455,133 @@ string functions
  select job_desc,char_length(job_desc) as letter_Count from employees group by job_desc ;
  
  
+ -- concat :
+ 
+ select emp_name , concat(salary,".$") as Salary from employees;
  
  
+ -- format :
+ 
+ select emp_name , format(salary,0) from employees;
  
  
+ -- left & right:
+ 
+select emp_name ,right(job_desc,3) as Coolie from employees;
  
  
- 
- 
- 
+/* DATE
+
+DATE - format YYYY-MM-DD
+DATETIME - format: YYYY-MM-DD HH:MI:SS
+TIMESTAMP - format: YYYY-MM-DD HH:MI:SS
+YEAR - format YYYY or YY
+
+ */
+
+
+alter table employees add column Joining_date Date;
+
+
+update employees set Joining_date = "2025-02-10";
+
+update employees set Joining_Date = "2024-09-10" where job_desc = "manager";
+
+select * from employees;
+
+update employees set Joining_date = "2024-08-04" where job_desc = "ceo" or job_desc = "Admin"; 
+
+-- Date Functions :  
+
+select now();
+
+select date(now());
+
+select curdate();
+
+select sysdate();
+
+-- year ,month ,day
+
+select year("2025-10-06");
+
+select month(now());
+
+select day(now());
+
+-- dayname , motnh name :
+
+select dayname(now()); 
+
+select monthname(now()); 
+
+/*
+
+dayofweek()
+dayofmonth()
+dayofyear()
+week()
+quarter()
+
+*/
+
+select date_format(curdate(),"%d-%m-%Y") as date;
+
+select datediff(curdate(),"2025-02-21") as date;
+
+select date_format(now(),'%W , %b %Y');
+
+/*
+=======  Date Specifiers =======
+
+| Code   | Meaning                              | Example (`2025-09-10`) |
+| ------ | ------------------------------------ | ---------------------- |
+| **%Y** | Year (4-digit)                       | `2025`                 |
+| **%y** | Year (2-digit)                       | `25`                   |
+| **%M** | Full month name                      | `September`            |
+| **%b** | Abbreviated month                    | `Sep`                  |
+| **%m** | Month (01–12)                        | `09`                   |
+| **%c** | Month (1–12, no leading zero)        | `9`                    |
+| **%d** | Day of month (01–31)                 | `10`                   |
+| **%e** | Day of month (1–31, no leading zero) | `10`                   |
+| **%j** | Day of year (001–366)                | `253`                  |
+| **%W** | Full weekday name                    | `Wednesday`            |
+| **%a** | Abbreviated weekday                  | `Wed`                  |
+| **%w** | Day of week (0=Sunday, 6=Saturday)   | `3`                    |
+
+
+========== Time Specifiers ==========
+
+| Code            | Meaning                      | Example (`15:45:23`) |
+| --------------- | ---------------------------- | -------------------- |
+| **%H**          | Hour (00–23)                 | `15`                 |
+| **%k**          | Hour (0–23, no leading zero) | `15`                 |
+| **%h** / **%I** | Hour (01–12)                 | `03`                 |
+| **%l**          | Hour (1–12, no leading zero) | `3`                  |
+| **%i**          | Minutes (00–59)              | `45`                 |
+| **%s**          | Seconds (00–59)              | `23`                 |
+| **%f**          | Microseconds (000000–999999) | `123456`             |
+| **%p**          | AM or PM                     | `PM`                 |
+
+
+=========== Combined Specifiers =============
+
+
+| Code   | Meaning                                   | Example       |
+| ------ | ----------------------------------------- | ------------- |
+| **%r** | Time in 12-hour format (hh\:mm\:ss AM/PM) | `03:45:23 PM` |
+| **%T** | Time in 24-hour format (hh\:mm\:ss)       | `15:45:23`    |
+| **%D** | Day of month with suffix                  | `10th`        |
+| **%U** | Week number (Sunday as first day)         | `37`          |
+| **%u** | Week number (Monday as first day)         | `37`          |
+| **%V** | Week number with mode (ISO-8601 standard) | `37`          |
+| **%X** | Year for the ISO week (4-digit)           | `2025`        |
+| **%x** | Year for the ISO week (2-digit)           | `25`          |
+
+*/
+
+
+
 
 
 
