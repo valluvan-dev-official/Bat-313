@@ -581,6 +581,128 @@ select date_format(now(),'%W , %b %Y');
 */
 
 
+/*
+HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions.
+
+Syntax :
+	SELECT column_name(s)
+	FROM table_name
+	WHERE condition
+	GROUP BY column_name(s)
+	HAVING condition;
+    
+where filter rows
+having filter groups
+*/
+
+select job_desc, count(emp_id) from employees group by job_desc having count(emp_id) >= 2;
+
+select job_desc , count(salary) from employees where salary >= 1300000 group by job_desc having count(emp_id) >= 2 ;
+
+select job_desc ,sum(salary) as Total_Salary from employees group by job_desc having sum(salary) >= 3500000 and count(*) >= 1;
+
+
+
+-- Operators :
+
+/*
+	Operators are symbols or keywords used to perform operations on values
+    
+    campare values
+    perform calculations
+    
+    1. Arithmentic Operators
+    2. Comparison Operators
+    3. Logical Operators
+    4. Bitwise Operators
+    5. Assignment Operators
+*/
+
+-- Arithmetic operators :
+
+/*
+1. + - Addition       
+2. - - subtraction
+3. * - Multiplication
+4. / - Division
+5. % - Modulus
+*/
+
+
+create table Groceries (
+product_id int primary key,
+product_name varchar(50),
+price int,
+quantity int);
+
+
+insert into Groceries values(101,"Milk",100,10),
+(102,"Soada",25,20),
+(103,"Rice",150,50),
+(104,"Oil",250,5);
+
+
+select * from groceries;
+
+select product_name, price, quantity, (price * quantity) as Total_price from groceries;
+
+
+
+-- Comparison Operator :
+
+/*
+1. = - Equal to
+2. != or <> -Not equal to
+3. > - Greater than
+4. < - Less than
+5. >= - Greater than or equal to
+6. <= - Less than or equal to
+
+*/
+
+select product_name from groceries where price >= 100;
+
+
+-- Logical Operator :
+
+/*
+1. And 
+2. Or
+3. Not
+*/
+
+
+-- Bitwise Operator :
+
+/*
+1. & - Bitwise And
+2. | - Bitwise Or
+3. ~ - Bitwise Not
+4. ^ - Bitwise XOR
+5. << - left shift
+6. >> - right shift
+
+usecase : low-level binary operations
+*/
+
+
+/*
+use case : 
+		assign values to variables
+        
+1. =   - equal  
+2. :=  - colon equal
+*/
+
+set @balance = 5000;
+
+set @deposit := 13000;
+
+set @balance = @balance + @deposit;
+
+
+select @balance;
+
 
 
 
