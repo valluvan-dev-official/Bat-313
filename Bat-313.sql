@@ -705,6 +705,155 @@ select @balance;
 
 
 
+-- Constraints :
+
+-- create department table :
+
+create table Department (
+dept_id int primary key,
+dept_name varchar(50) unique not null
+);
+
+
+insert into Department values(1,"HR"),(2,"IT"),(3,"Finance");
+
+insert into Department values(4,"Marketing");
+
+select * from department;
+
+create table employee (
+emp_id int primary key auto_increment,
+emp_name varchar(50) NOT NULL,
+EMAIL varchar(100) UNIQUE,
+SALARY decimal(10,2) CHECK(SALARY >= 10000),
+STATUS varchar(20) DEFAULT 'ACTIVE',
+DEPT_ID INT,
+foreign key (DEPT_ID) references DEPARTMENT(DEPT_ID)
+);
+
+INSERT INTO employee (emp_id,emp_name,email,salary,dept_id) VALUES(101, "RAVI","ravi@gmail.com",50000,1);
+
+INSERT INTO employee (emp_name,email,salary,dept_id) VALUES ("PRIYA","priya@gmail.com",60000,2),
+("karthik","karthik@gmail.com",70000,3);
+
+
+insert into employee (emp_id,emp_name,email,salary,dept_id) values(
+104, "Meena", "meena@gmail.com",55000,2
+);
+
+select * from Employee;
+
+
+-- NOT NULL : 
+
+insert into employee(emp_id,emp_name,email,salary,dept_id) values(
+105,NULL, "abc@gmail.com",4000,1
+);
+
+-- UNIQUE :
+
+insert into employee(emp_id,emp_name,email,salary,dept_id) values(
+106,"ABI","ravi@gmail.com",40000,2
+);
+
+-- CHECK :
+
+insert into employee (emp_id,emp_name,email,salary,dept_id) values(
+107,"suresh","suresh@gmail.com",9000,2
+);
+
+-- FORIEGN KEY :
+
+insert into	employee(emp_id,emp_name,email,salary,dept_id) values(
+108,"ganesh","ganesh@gmail.com",35000,10
+);
+
+
+select * from employee;
+
+
+-- Subquery :
+/*
+
+	- it is enclosed in parentheses ()
+    - it is executed first, and the result passed to the outer query.
+    
+1. Single - row subquery :
+	retunrs one value [one row,one column]
+    where
+    
+2. Multi - row subquery :
+	reurns multiple values [one column , many rows]
+    IN , ANY , ALL
+    
+3. Multi - column subquery :
+	return multiple columns [one row, many columns]
+    where , from
+    
+4. Correlated subquery :
+	subquery depends on the outer query
+    EXISTS
+*/
+
+
+create table departments (
+dept_id int primary key,
+dept_name varchar(30)
+);
+
+create table studentss (
+std_id int primary key,
+name varchar(30),
+marks int,
+dept_id int
+);
+
+
+insert into departments values(101,"CSE"),
+(102,"ECE"),
+(103,"MECH");
+
+insert into departments values(104,"civil");
+
+insert into studentss values(1,"Arun",85,101),
+(2,"Bala",90,102),
+(3,"Charu",95,101),
+(4,"David",80,103);
+
+-- Subquery in Select Statement : Find Students with Highest Marks 
+
+select name,marks from studentss where marks = (select max(marks) from studentss);
+
+-- Subquery in Where clause : find students from the "CSE" Department
+
+select name from studentss where dept_id = (select dept_id from departments where dept_name = "CSE");
+
+
+-- Subquery with IN : find the students in the "CSE" or "ECE" departments
+
+select name from studentss where dept_id in (select dept_id from departments where dept_name in("CSE","ECE"));
+
+
+-- Subquery with ANY : Find students with marks more than student in MECH 
+
+select name, marks from studentss
+where marks > ANY (select marks from studentss where dept_id = 103 );
+
+
+-- Correlated Subquery [Exists] : Find departments with atleast one Student
+
+select dept_name from departments as D
+where EXISTS (select * from studentss as S where S.dept_id = D.dept_id);
+
+
+
+
+
+
+
+
+
+
 
 
 
