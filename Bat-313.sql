@@ -847,6 +847,102 @@ where EXISTS (select * from studentss as S where S.dept_id = D.dept_id);
 
 
 
+-- JOINS 
+
+/*
+    a join is like combining two lists (tables) based on something they have in common(a common column). 
+
+	Types of joins :
+    
+		1. INNER JOIN
+        2. LEFT JOIN
+        3. RIGHT JOIN
+        4. FULL OUTER JOIN
+        5. CROSS JOIN
+*/
+
+
+-- Customr table :
+
+create table Customers (
+ID int primary key, 
+Name varchar(50));
+
+-- Order Table :
+
+create table Orders (
+order_id int primary key,
+customer_id int,
+product varchar(50)
+);
+
+-- Values for customers table :
+
+insert into customers values(1, "kala"),(2,"abi"),(3,"priya");
+
+-- Values for Orders table :
+
+insert into orders values(101 , 1 , "Laptop"),
+(102,2,"Phone"),
+(103,1,"tablet"),
+(104,4,"headphones");
+
+-- INNER JOIN : 
+
+/*
+ - Returns only the rows that having macthing values in both tables
+ 
+When you want to see only the customers who have placed orders.
+*/
+
+select customers.Name,orders.product 
+from customers 
+inner join orders on customers.ID = orders.customer_id; 
+
+
+
+-- LEFT JOIN :
+
+/*
+
+- Returns all rows from the left table and the matching rows from the right table.
+- if there is no match, NULL values are returned for columns from the right table.
+
+when you want to see all customers , even if they haven't place any orders. 
+
+*/
+
+select customers.Name,orders.Product
+from customers
+left Join orders on customers.ID = orders.customer_id;
+
+
+
+-- RIGHT JOIN :
+
+/*
+- Returns all rows from the right table and the matching rows from the left table.
+- if there is no match, NULL values are returned for columns from the left table.
+
+when you want to see all orders, even if there is no matching customers.
+*/
+
+
+select customers.Name,orders.product
+from customers
+right join orders on customers.ID = orders.customer_id;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
