@@ -934,6 +934,22 @@ right join orders on customers.ID = orders.customer_id;
 
 
 
+/*
+ - Returns all rows when there is a match in either the left or right table.
+ - if there is no match, NULL values are returned for columns  from the table without a match.
+  
+ when you want to see all customers and all orders, even if there is no match.
+*/
+
+
+
+select customers.Name,orders.Product
+from customers
+left Join orders on customers.ID = orders.customer_id
+union
+select customers.Name,orders.product
+from customers
+right join orders on customers.ID = orders.customer_id;
 
 
 
