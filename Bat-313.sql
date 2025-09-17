@@ -953,6 +953,120 @@ right join orders on customers.ID = orders.customer_id;
 
 
 
+-- CROSS JOIN :
+
+/*
+
+- Return the cartesian product of the two tables
+- all possible combinations of rows
+
+when you want to see every customee paried with evry order.
+ 
+*/
+
+select customers.Name,orders.product
+from customers
+cross join 
+orders;
+
+
+-- Inner Join New Example :
+
+
+select customers.ID,customers.Name,orders.product,orders.order_id
+from customers 
+inner join orders on customers.ID = orders.customer_id; 
+
+
+-- Self Join 
+
+/*
+Table Name - Employees
+
+| emp\_id | emp\_name | manager\_id |
+| ------- | --------- | ----------- |
+| 1       | Ravi      | NULL        |
+| 2       | Arjun     | 1           |
+| 3       | Divya     | 1           |
+| 4       | Meena     | 2           |
+
+*/
+
+
+create Table Bt_Employees(
+emp_id int primary key,
+emp_name varchar(50) not null,
+manager_id int null
+);
+
+insert into Bt_employees values(1, 'Ravi', NULL),
+(2, 'Arjun', 1),
+(3, 'Divya', 1),
+(4, 'Meena', 2),
+(5, 'Karthik', 2),
+(6, 'Sanjay', 3);
+
+
+select * from Bt_employees;
+
+select E.emp_id, E.emp_name as Employee , M.emp_name as Manger
+from Bt_employees as E
+Left Join Bt_Employees as M on E.manager_id = M.emp_id;
+
+
+
+-- DCL COMMANDS
+/*
+SELECT
+INSERT
+UPDATE
+DELETE
+ALL
+*/
+
+-- CREATE USER :
+
+create user "new_user"@'localhost' identified by "password123";
+
+-- GRANT PREVILEGES :
+
+grant select on bat_313.employees to "new_user"@"localhost";
+
+-- Grant One More Permission :
+
+grant insert on bat_313.employees to "new_user"@"localhost";
+
+
+-- OverAll Permissions :
+
+grant All privileges on bat_313.employees to "new_user"@"localhost"; 
+
+
+-- REVOKE PERMISSIONS :
+
+revoke insert on bat_313.employees from "new_user"@"localhost";
+
+
+SHOW grants FOR "new_user"@"localhost";
+
+
+
+-- CREATE USER 'admin'@'192.168.1.100' IDENTIFIED BY 'admin123';
+
+-- CREATE USER 'report'@'mycompany.com' IDENTIFIED BY 'report123';
+
+/*
++----------+-----------+
+| user     | host      |
++----------+-----------+
+| trainer  | localhost |
+| student  | %         |
+| admin    | 192.168.1.100 |
++----------+-----------+
+
+*/
+
+
 
 
 
