@@ -1050,6 +1050,25 @@ revoke insert on bat_313.employees from "new_user"@"localhost";
 SHOW grants FOR "new_user"@"localhost";
 
 
+-- Grants for Multiple User :
+
+create user "hariprasath"@'localhost' identified by "password123";
+
+create user "hari"@'localhost' identified by "password1234";
+
+create user "Abisheck"@'localhost' identified by "password12345";
+
+-- Check All Users List :
+
+Select user,host from mysql.user; 
+
+
+-- Give Multiple Grants for Multiple Users :
+
+grant select,insert,update,delete on bat_313.* to "hariprasath"@"localhost","hari"@"localhost","Abisheck"@"localhost";
+
+ SHOW grants FOR "hariprasath"@"localhost";
+
 
 -- CREATE USER 'admin'@'192.168.1.100' IDENTIFIED BY 'admin123';
 
@@ -1067,19 +1086,69 @@ SHOW grants FOR "new_user"@"localhost";
 */
 
 
+-- TCL COMMANDS :
+/*
+commit      - Permanent save 
+rollback    - full undo
+savepoint   - checkpoint fix
+*/ 
+
+
+-- Example For TCL 
+
+ CREATE TABLE Accounts (
+    acc_no INT PRIMARY KEY,
+    name VARCHAR(50),
+    balance INT
+);
 
 
 
+insert into Accounts values(101,"Hari",5000),(102,"Vijay",3000),(103,"Abisheck",7000);
+
+commit;
 
 
+-- Trasaction start (Money Transfer) :
+
+-- hari balance la 1000 deduct :
+
+update accounts set balance = balance - 1000 Where name = "hari";
+
+-- abisheck balance la 1000 add :
+
+update accounts set balance = balance + 1000 where name = "Abisheck";
 
 
+commit;
+
+-- Disable to Auto commit :
+set autocommit = 0; 
+
+-- start Transaction :
+start transaction;
 
 
+update accounts set balance = balance - 200 where name = "Hari";
+
+rollback;
+
+select * from accounts;
 
 
+-- SavePoint Example :
 
+update accounts set balance = balance - 2500 where name = "Abisheck";
 
+savepoint step1;
+
+update accounts set balance = balance + 300 where name = "Hari";
+
+savepoint step2;
+
+rollback to step2;
+
+release savepoint step2;
 
 
 
