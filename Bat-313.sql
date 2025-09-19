@@ -1153,3 +1153,83 @@ release savepoint step2;
 
 
 
+
+-- ========= Stored Procedure ===========
+
+/*
+
+Syntax :
+
+DELIMITER $$
+
+CREATE PROCEDURE PROCEDURE_NAME(
+...
+)
+BEGIN 
+
+ # SQL STATEMENTS
+ 
+END $$
+
+
+*/
+
+
+-- CREATE TABLE :
+
+create table pro_employees(
+emp_id int primary key,
+emp_name varchar(50),
+salary decimal(10,2)
+);
+
+-- Insert Sample Data :
+
+INSERT INTO pro_employees VALUES
+(101, 'Ravi', 30000),
+(102, 'Priya', 45000),
+(103, 'Karthik', 50000);
+
+select * from pro_employees where emp_id = 101;
+select * from pro_employees where emp_id = 103;
+
+
+-- Example :
+
+delimiter &&
+
+create procedure get_employee_id(in empid int)
+begin
+	select * from pro_employees where emp_id = empid;
+
+end $$
+
+delimiter $$;
+
+
+call get_employee_id(103);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
