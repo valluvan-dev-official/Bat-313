@@ -1193,10 +1193,10 @@ INSERT INTO pro_employees VALUES
 select * from pro_employees where emp_id = 101;
 select * from pro_employees where emp_id = 103;
 
-
 -- Example :
 
-delimiter &&
+/*
+delimiter $$
 
 create procedure get_employee_id(in empid int)
 begin
@@ -1208,14 +1208,58 @@ delimiter $$;
 
 
 call get_employee_id(103);
+call get_employee_id(101);
+
+*/
 
 
+delimiter $$
+
+create procedure get_employee(in name varchar(50))
+begin
+	select emp_id,emp_name,salary from pro_employees where emp_name = name;
+    
+end $$
+
+delimiter $$
 
 
+call get_employee("Priya");
+
+call get_employee("Ravi");
 
 
+/*
+-- Length :
+
+select length(" Hi Guys..!") as len;
+
+-- replace :replace(string, "from_substring","to_substring") 
 
 
+select replace("Welcome to Our Python and Data Analytics Course in Chennai.."," ","__") as Replaced;
+
+*/
+
+-- LENGTH AND Replace Combined 
+
+-- length
+SELECT LENGTH('The Old Man') AS total_length; -- 11
+
+
+-- replace :
+SELECT REPLACE("The Old Man"," ","") as no_spaces;
+
+
+-- Count Characters Without Spaces :
+
+select LENGTH(REPLACE("The Old Man"," ","")) as length_no_spaces;
+
+
+-- Count Words Using Formula :
+
+
+select (LENGTH("The Old Man hi how are you?") - length(replace("The Old Man hi how are you?"," ","")) + 1) as Word_Count; -- 11 - 9 = 2 + 1
 
 
 
