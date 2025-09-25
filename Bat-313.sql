@@ -1262,7 +1262,108 @@ select LENGTH(REPLACE("The Old Man"," ","")) as length_no_spaces;
 select (LENGTH("The Old Man hi how are you?") - length(replace("The Old Man hi how are you?"," ","")) + 1) as Word_Count; -- 11 - 9 = 2 + 1
 
 
+-- Windows Function :
+/*
 
+syntax :
+
+<window_function> (expression) over(partition by column_name order by column_name)
+
+order by - mandatory
+partition by - optional
+
+Types of window functions :
+
+	1. Ranking functions
+    2. Aggregate functions
+    3. Values functions
+    
+Ranking Functions :
+
+	1. Row_number()
+    2. Rank()
+    3. Dense_Rank()
+*/
+
+
+
+CREATE TABLE student_marks (
+    Name VARCHAR(50),
+    Subject VARCHAR(50),
+    Marks INT
+);
+
+
+INSERT INTO student_marks (Name, Subject, Marks) VALUES
+('Arun', 'Tamil', 75),
+('Mani', 'English', 80),
+('Hari', 'Tamil', 90),
+('Vetri', 'English', 89),
+('Sai', 'Tamil', 80),
+('debhi', 'Tamil', 75),
+('MAthi', 'English', 89),
+('siva', 'Tamil', 56),
+('sathish', 'maths', 60),
+('Rooban', 'science', 50),
+('Mouli', 'Tamil', 70);
+
+-- <window_function> (expression) over(partition by column_name order by column_name)
+
+select name,subject,
+marks,
+row_number() over (partition by subject order by marks desc) as row_num,
+rank() over (partition by subject order by marks desc) as rank_no,
+dense_rank() over (partition by subject order by marks desc) as d_rank
+from student_marks; 
+
+CREATE TABLE win_Employees(
+	empid INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    Name varchar(30),
+    salary decimal(10,2)
+    
+);
+
+
+ALTER TABLE win_Employees ADD city varchar(50); 
+ALTER TABLE win_Employees RENAME COLUMN city to address;
+
+
+
+INSERT INTO win_Employees (empid,Name,salary,address) values(4430,"Pradeep",50000,"Chennai");
+
+INSERT INTO win_Employees (empid,name,salary,address) values(4431,"Dharani",65000,"Perambur"),
+	(4432,"Varun",35000,"Madurai"),
+    (4433,"Isak",40000,"Chennai");
+    
+INSERT INTO win_Employees values(4434,"Mahesh",45000.00,"Bengaluru");
+
+INSERT INTO win_Employees (Empid,Name,address) values(4435,"Aravinth","Trichy");
+
+    
+INSERT INTO win_Employees values(4436,"sunil",45000.00,"Bengaluru");
+    
+INSERT INTO win_Employees values(4437,"saranya",45000.00,"Bengaluru");
+    
+INSERT INTO win_Employees values(4438,"vijay",50000.00,"Bengaluru");
+    
+INSERT INTO win_Employees values(4439,"ajith",43000.00,"Bengaluru");
+
+
+-- value Functions :
+
+/*
+	These Values functions fetch values from previous or next
+    
+    1. Lead() : 
+			fetches the next rows values
+            
+	2. Lag() :
+			fetches the previous row's values
+*/
+
+-- lead :
+
+select name,salary,address, lead(salary) over (order by salary) as next_salary from win_employees;
 
 
 

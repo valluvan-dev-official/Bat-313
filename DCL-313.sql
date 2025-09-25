@@ -54,6 +54,53 @@ GRANT SELECT ON `companydb`.`employees` TO `trainer`@`localhost`
 
 
 
+-- =====================================================
+
+
+CREATE TABLE ATM_Accounts (
+    acc_no INT PRIMARY KEY,
+    name VARCHAR(50),
+    balance INT
+);
+
+
+INSERT INTO ATM_Accounts VALUES
+(101, 'Hari', 5000),
+(102, 'Vijay', 3000),
+(103, 'Abisheck', 7000);
+
+
+DELIMITER $$
+
+CREATE PROCEDURE withdrawmoney(
+	IN P_acc_no INT,
+    IN P_amount int
+    
+Begin 
+	Declare current_balance int 
+    
+    select balance into current_balance from atm_accounts where acc_no = p_acc_no
+    
+    if current_balance >= p_amount Then
+		update ATM_Accounts
+		Set balance = balance - p_amount
+		where acc_no = p_acc_no;
+	else
+		signal sqlstate '45000'
+        set message_text = "Insufficient Balance";
+	end if;
+end //
+
+delimiter ;
+		
+)
+
+
+
+
+
+
+
 
 
 
